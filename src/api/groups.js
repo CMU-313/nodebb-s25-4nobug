@@ -118,26 +118,45 @@ async function canSearchMembers(uid, groupName) {
 	}
 }
 
-groupsAPI.join = async function (caller, data) {
+async function validcaller(caller) {
+	if (caller.uid <= 0) {
+		throw new Error('[[error:invalid-uid]]');
+	}
+}
+
+async function validdata(data) {
 	if (!data) {
 		throw new Error('[[error:invalid-data]]');
 	}
-	if (caller.uid <= 0 || !data.uid) {
+	if (!data.uid) {
 		throw new Error('[[error:invalid-uid]]');
 	}
+}
 
+async function validGroup(data) {
 	const groupName = await groups.getGroupNameByGroupSlug(data.slug);
 	if (!groupName) {
 		throw new Error('[[error:no-group]]');
 	}
+	return groupName;
+}
 
+async function validPriv(caller, groupName) {
 	const isCallerAdmin = await privileges.admin.can('admin:groups', caller.uid);
-	if (!isCallerAdmin && (
-		groups.systemGroups.includes(groupName) ||
-		groups.isPrivilegeGroup(groupName)
-	)) {
+	if (
+		!isCallerAdmin &&
+		(groups.systemGroups.includes(groupName) || groups.isPrivilegeGroup(groupName))
+	) {
 		throw new Error('[[error:not-allowed]]');
 	}
+	return isCallerAdmin;
+}
+
+groupsAPI.join = async function (caller, data) {
+	await validdata(data);
+	await validcaller(caller);
+	const groupName = await validGroup(data);
+	const isCallerAdmin = await validPriv(caller, groupName);
 
 	const [groupData, userExists] = await Promise.all([
 		groups.getGroupData(groupName),
@@ -149,8 +168,8 @@ groupsAPI.join = async function (caller, data) {
 	}
 
 	const isSelf = parseInt(caller.uid, 10) === parseInt(data.uid, 10);
+
 	if (!meta.config.allowPrivateGroups && isSelf) {
-		// all groups are public!
 		await groups.join(groupName, data.uid);
 		logGroupEvent(caller, 'group-join', {
 			groupName: groupName,
