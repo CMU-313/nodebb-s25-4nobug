@@ -1,5 +1,7 @@
 'use strict';
 
+console.log('TJ Patel');
+
 const validator = require('validator');
 
 const privileges = require('../privileges');
