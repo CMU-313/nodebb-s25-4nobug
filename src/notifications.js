@@ -400,7 +400,7 @@ Notifications.markResolved = async function (qid, uid) {
 
     await db.setObject(`notifications:${notification.nid}`, notification);
     await db.sortedSetAdd(`uid:${uid}:notifications:unread`, notification.datetime, notification.nid);
-};
+};  
 
 Notifications.notifyReply = async function (replyId, originalPostId, replierUid) {
     if (!replyId || !originalPostId || parseInt(replierUid, 10) <= 0) {
