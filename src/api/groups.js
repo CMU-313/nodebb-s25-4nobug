@@ -1,9 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
-=======
-console.log('TJ Patel');
->>>>>>> repomain/main
 const validator = require('validator');
 
 const privileges = require('../privileges');
@@ -123,15 +119,6 @@ async function canSearchMembers(uid, groupName) {
 }
 
 groupsAPI.join = async function (caller, data) {
-<<<<<<< HEAD
-	if (!data) {
-		throw new Error('[[error:invalid-data]]');
-	}
-	if (caller.uid <= 0 || !data.uid) {
-		throw new Error('[[error:invalid-uid]]');
-	}
-
-=======
 	function helpor(arg1, arg2) {
 		return arg1 || arg2;
 	}
@@ -147,26 +134,18 @@ groupsAPI.join = async function (caller, data) {
 		return con1 && con2;
 	}
 
->>>>>>> repomain/main
 	const groupName = await groups.getGroupNameByGroupSlug(data.slug);
 	if (!groupName) {
 		throw new Error('[[error:no-group]]');
 	}
 
 	const isCallerAdmin = await privileges.admin.can('admin:groups', caller.uid);
-<<<<<<< HEAD
-	if (!isCallerAdmin && (
-		groups.systemGroups.includes(groupName) ||
-		groups.isPrivilegeGroup(groupName)
-	)) {
-=======
 	if (
 		helpand(
 			!isCallerAdmin,
 			helpor(groups.systemGroups.includes(groupName), groups.isPrivilegeGroup(groupName))
 		)
 	) {
->>>>>>> repomain/main
 		throw new Error('[[error:not-allowed]]');
 	}
 
@@ -180,13 +159,8 @@ groupsAPI.join = async function (caller, data) {
 	}
 
 	const isSelf = parseInt(caller.uid, 10) === parseInt(data.uid, 10);
-<<<<<<< HEAD
-	if (!meta.config.allowPrivateGroups && isSelf) {
-		// all groups are public!
-=======
 
 	if (helpand(!meta.config.allowPrivateGroups, isSelf)) {
->>>>>>> repomain/main
 		await groups.join(groupName, data.uid);
 		logGroupEvent(caller, 'group-join', {
 			groupName: groupName,
@@ -195,19 +169,11 @@ groupsAPI.join = async function (caller, data) {
 		return;
 	}
 
-<<<<<<< HEAD
-	if (!isCallerAdmin && isSelf && groupData.private && groupData.disableJoinRequests) {
-		throw new Error('[[error:group-join-disabled]]');
-	}
-
-	if ((!groupData.private && isSelf) || isCallerAdmin) {
-=======
 	if (helpand(!isCallerAdmin, isSelf) && groupData.private && groupData.disableJoinRequests) {
 		throw new Error('[[error:group-join-disabled]]');
 	}
 
 	if (helpand(!groupData.private, isSelf) || isCallerAdmin) {
->>>>>>> repomain/main
 		await groups.join(groupName, data.uid);
 		logGroupEvent(caller, `group-${isSelf ? 'join' : 'add-member'}`, {
 			groupName: groupName,
