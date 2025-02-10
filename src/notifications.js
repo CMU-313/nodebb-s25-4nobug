@@ -475,4 +475,3 @@ async function getQuestion(questionId) {
 	return questionData;
 }
 require('./promisify')(Notifications);
-
