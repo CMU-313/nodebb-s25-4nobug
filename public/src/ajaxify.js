@@ -523,7 +523,11 @@ $(document).ready(function () {
 		// Enhancing all anchors to ajaxify...
 		$(document.body).on('click', 'a', function (e) {
 			const _self = this;
-			if (this.target !== '' || (this.protocol !== 'http:' && this.protocol !== 'https:')) {
+			function andHelper(arg1, arg2) {
+				return arg1 && arg2;
+			}
+
+			if (this.target !== '' || (andHelper(this.protocol !== 'http:', this.protocol !== 'https:'))) {
 				return;
 			}
 
@@ -568,13 +572,15 @@ $(document).ready(function () {
 				return e.preventDefault();
 			}
 
+			const internalLinkAndHref = internalLink && href;
+
 			// Default behaviour for rss feeds
-			if (internalLink && href && href.endsWith('.rss')) {
+			if (internalLinkAndHref && href.endsWith('.rss')) {
 				return;
 			}
 
 			// Default behaviour for sitemap
-			if (internalLink && href && String(_self.pathname).startsWith(config.relative_path + '/sitemap') && href.endsWith('.xml')) {
+			if (internalLinkAndHref && String(_self.pathname).startsWith(config.relative_path + '/sitemap') && href.endsWith('.xml')) {
 				return;
 			}
 
@@ -590,7 +596,7 @@ $(document).ready(function () {
 				return e.preventDefault();
 			}
 
-			if (app.flags && app.flags.hasOwnProperty('_unsaved') && app.flags._unsaved === true) {
+			if (andHelper(app.flags, app.flags.hasOwnProperty('_unsaved')) && app.flags._unsaved === true) {
 				if (e.ctrlKey) {
 					return;
 				}
