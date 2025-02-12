@@ -7,11 +7,22 @@
 					<i class="fa fa-fw fa-inbox text-primary"></i>
 					<span class="d-none d-md-inline fw-semibold">[[topic:mark-unread]]</span>
 				</button>
+
+				
 				{{{ end }}}
 
 				<!-- IMPORT partials/topic/watch.tpl -->
 				<!-- IMPORT partials/topic/sort.tpl -->
 				<!-- IMPORT partials/topic/tools.tpl -->
+
+				{{{ if loggedIn }}}
+				<button component="topic/mark-unread" class="btn-ghost-sm ff-secondary d-flex gap-2 align-items-center">
+					<i class="fa fa-fw fa-inbox text-primary"></i>
+					<span class="d-none d-md-inline fw-semibold">[[topic:mark-unread]]</span>
+				</button>
+
+				
+				{{{ end }}}
 
 				{{{ if (!feeds:disableRSS && rssFeedUrl) }}}
 				<a class="btn-ghost-sm d-none d-lg-flex align-self-stretch" target="_blank" href="{rssFeedUrl}" title="[[global:rss-feed]]"><i class="fa fa-rss text-primary"></i></a>

@@ -11,6 +11,13 @@
 				<i class="fa fa-fw fa-inbox text-secondary"></i> [[topic:thread-tools.markAsUnreadForAll]]
 			</a>
 		</li>
+
+		<li>
+			<a component="topic/mark-resolved-for-all" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
+				<i class="fa fa-fw fa-inbox text-secondary"></i> [[topic:thread-tools.markAsUnresolvedForAll]]
+			</a>
+		</li>
+
 		<li>
 			<a component="topic/pin" href="#" class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem">
 				<i class="fa fa-fw fa-thumb-tack text-secondary"></i> [[topic:thread-tools.pin]]
