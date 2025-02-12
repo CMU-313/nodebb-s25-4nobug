@@ -95,6 +95,7 @@
     "ignoring.description": "Do not notify me of new replies.<br/>Do not show topic in unread.",
     "thread-tools.title": "Ibikoresho by'Ikiganiro",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "Zamura Ikiganiro",
     "thread-tools.unpin": "Manura Ikiganiro",
     "thread-tools.lock": "Fungirana Ikiganiro",

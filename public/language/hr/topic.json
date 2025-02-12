@@ -95,6 +95,7 @@
     "ignoring.description": "Nemoj slati obavijesti o novim odgovorima.<br/>Ne prikazuj temu u nepročitanom.",
     "thread-tools.title": "Alati teme",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "Zakači temu",
     "thread-tools.unpin": "Otkači temu",
     "thread-tools.lock": "Zaključaj temu",

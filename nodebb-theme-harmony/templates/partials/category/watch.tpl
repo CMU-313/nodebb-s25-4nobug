@@ -25,15 +25,15 @@
 		</li>
 
 		<li>
-			<a class="dropdown-item rounded-1 d-flex align-items-center gap-2 p-2" href="#" component="category/watching" data-state="watching" role="menuitem">
+			<a class="dropdown-item rounded-1 d-flex align-items-center gap-2 p-2" href="#" component="category/unresolved" data-state="unresolved" role="menuitem">
 				<div class="flex-grow-1 d-flex flex-column">
 					<span class="d-flex align-items-center gap-2">
 						<i class="flex-shrink-0 fa fa-fw fa-bell-o text-secondary"></i>
-						<span class="flex-grow-1 fw-semibold">[[category:watching]]</span>
+						<span class="flex-grow-1 fw-semibold">[[category:unresolved]]</span>
 					</span>
-					<div class="help-text text-secondary text-xs">[[category:watching.description]]</div>
+					<div class="help-text text-secondary text-xs">[[category:unresolved.description]]</div>
 				</div>
-				<span class="flex-shrink-0"><i component="category/watching/check" class="fa fa-fw {{{ if ./isWatched }}}fa-check{{{ end }}}"></i></span>
+				<span class="flex-shrink-0"><i component="category/unresolved/check" class="fa fa-fw {{{ if ./isWatched }}}fa-check{{{ end }}}"></i></span>
 			</a>
 		</li>
 

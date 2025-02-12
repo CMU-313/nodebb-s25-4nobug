@@ -95,6 +95,7 @@
     "ignoring.description": "Do not notify me of new replies.<br/>Do not show topic in unread.",
     "thread-tools.title": "Unelte pentru subiecte",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "Pin Subiect",
     "thread-tools.unpin": "Unpin Subiect",
     "thread-tools.lock": "Închide Subiect",

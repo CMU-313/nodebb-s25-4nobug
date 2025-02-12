@@ -108,6 +108,7 @@
 
 	"thread-tools.title": "Topic Tools",
 	"thread-tools.markAsUnreadForAll": "Mark Unread For All",
+	"thread-tools.markAsResolvedForAll": "Mark Resolved For All",
 	"thread-tools.pin": "Pin Topic",
 	"thread-tools.unpin": "Unpin Topic",
 	"thread-tools.lock": "Lock Topic",

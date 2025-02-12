@@ -95,6 +95,7 @@
     "ignoring.description": "Do not notify me of new replies.<br/>Do not show topic in unread.",
     "thread-tools.title": "Emne værktøjer",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "Fastgør tråd",
     "thread-tools.unpin": "Frigør tråd",
     "thread-tools.lock": "Lås tråd",

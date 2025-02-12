@@ -95,6 +95,7 @@
     "ignoring.description": "Do not notify me of new replies.<br/>Do not show topic in unread.",
     "thread-tools.title": "Topic Tools",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "Pone in evidèntzia s'Arresonda",
     "thread-tools.unpin": "Boga dae s'Evidèntzia s'Arresonasa",
     "thread-tools.lock": "Bloca Arresonada",

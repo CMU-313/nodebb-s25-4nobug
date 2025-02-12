@@ -15,6 +15,8 @@
 				<!-- IMPORT partials/topic/sort.tpl -->
 				<!-- IMPORT partials/topic/tools.tpl -->
 
+				<!-- IMPORT partials/topic/watch.tpl -->
+
 				{{{ if loggedIn }}}
 				<button component="topic/mark-unread" class="btn-ghost-sm ff-secondary d-flex gap-2 align-items-center">
 					<i class="fa fa-fw fa-inbox text-primary"></i>

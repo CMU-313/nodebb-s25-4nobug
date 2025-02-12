@@ -95,6 +95,7 @@
     "ignoring.description": "Do not notify me of new replies.<br/>Do not show topic in unread.",
     "thread-tools.title": "أدوات الموضوع",
     "thread-tools.markAsUnreadForAll": "Mark Unread For All",
+    "thread-tools.markAsResolvedForAll": "Mark Resolved For All",
     "thread-tools.pin": "علق الموضوع",
     "thread-tools.unpin": "إلغاء تعليق الموضوع",
     "thread-tools.lock": "أقفل الموضوع",
