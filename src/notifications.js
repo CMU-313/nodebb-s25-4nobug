@@ -157,7 +157,7 @@ Notifications.create = async function (data) {
 	}
 	await Promise.all([
 		db.sortedSetAdd('notifications', now, data.nid),
-		db.setObject(`notificati ons:${data.nid}`, data),
+		db.setObject(`notifications:${data.nid}`, data),
 	]);
 	return data;
 };
