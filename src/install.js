@@ -420,6 +420,42 @@ async function createGlobalModeratorsGroup() {
 	await groups.show('Global Moderators');
 }
 
+async function createStudents() {
+	const groups = require('./groups');
+	const exists = await groups.exists('Students');
+	if (exists) {
+		winston.info('Students group found, skipping creation!');
+	} else {
+		await groups.create({
+			name: 'Students',
+			userTitle: 'Student',
+			description: 'Cute students here',
+			hidden: 0,
+			private: 0,
+			disableJoinRequests: 0,
+		});
+	}
+	await groups.show('Students');
+}
+
+async function createInstructors() {
+	const groups = require('./groups');
+	const exists = await groups.exists('instructors');
+	if (exists) {
+		winston.info('Instructors group found, skipping creation!');
+	} else {
+		await groups.create({
+			name: 'instructors',
+			userTitle: 'Instructor',
+			description: 'Cool instructors are here',
+			hidden: 0,
+			private: 0,
+			disableJoinRequests: 0,
+		});
+	}
+	await groups.show('Instructors');
+}
+
 async function giveGlobalPrivileges() {
 	const privileges = require('./privileges');
 	const defaultPrivileges = [
@@ -584,6 +620,8 @@ install.setup = async function () {
 		await createDefaultUserGroups();
 		const adminInfo = await createAdministrator();
 		await createGlobalModeratorsGroup();
+		await createStudents();
+		await createInstructors();
 		await giveGlobalPrivileges();
 		await createMenuItems();
 		await createWelcomePost();
