@@ -440,12 +440,12 @@ async function createStudents() {
 
 async function createInstructors() {
 	const groups = require('./groups');
-	const exists = await groups.exists('instructors');
+	const exists = await groups.exists('Instructors');
 	if (exists) {
 		winston.info('Instructors group found, skipping creation!');
 	} else {
 		await groups.create({
-			name: 'instructors',
+			name: 'Instructors',
 			userTitle: 'Instructor',
 			description: 'Cool instructors are here',
 			hidden: 0,
