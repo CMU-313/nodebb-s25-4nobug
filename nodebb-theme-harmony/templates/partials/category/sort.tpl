@@ -4,11 +4,6 @@
 		<span class="d-none d-md-inline fw-semibold">{sortOptionLabel}</span>
 	</button>
 
-	<button class="btn-ghost-sm ff-secondary d-flex gap-2 align-items-center dropdown-toggle" data-bs-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false" aria-label="[[aria:topic-sort-option, {sortOptionLabel}]]">
-		<i class="fa fa-fw fa-arrow-down-wide-short text-primary"></i>
-		<span class="d-none d-md-inline fw-semibold">{sortOptionLabel}</span>
-	</button>
-
 	<ul class="dropdown-menu p-1 text-sm" role="menu">
 		<li>
 			<a class="dropdown-item rounded-1 d-flex align-items-center gap-2" href="#" data-sort="recently_replied" role="menuitem">
