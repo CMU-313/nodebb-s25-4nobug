@@ -40,11 +40,17 @@ module.exports = function (Posts) {
 		if (data.toPid) {
 			postData.toPid = data.toPid;
 		}
+
 		if (data.ip && meta.config.trackIpPerPost) {
 			postData.ip = data.ip;
 		}
+
 		if (data.handle && !parseInt(uid, 10)) {
 			postData.handle = data.handle;
+		}
+
+		if (data.priorityLevel != 0) {
+			postData.priorityLevel = data.priorityLevel;
 		}
 
 		let result = await plugins.hooks.fire('filter:post.create', { post: postData, data: data });

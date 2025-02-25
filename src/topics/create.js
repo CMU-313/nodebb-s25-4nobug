@@ -14,6 +14,7 @@ const posts = require('../posts');
 const privileges = require('../privileges');
 const categories = require('../categories');
 const translator = require('../translator');
+const priorityflag = require('../posts/priorityflag');
 
 module.exports = function (Topics) {
 	Topics.create = async function (data) {
@@ -201,6 +202,13 @@ module.exports = function (Topics) {
 		if (uid > 0 && settings.followTopicsOnReply) {
 			await Topics.follow(postData.tid, uid);
 		}
+		
+		// if (priorityflag(data.content) == 1) {
+		// 	data.flaggedPriority = 1;
+		// } else if (priorityflag(data.content) == 2) {
+		// 	data.flaggedPriority = 1;
+		// }
+		data.priorityLevel = priorityflag(data.content);
 
 		if (parseInt(uid, 10)) {
 			user.setUserField(uid, 'lastonline', Date.now());
