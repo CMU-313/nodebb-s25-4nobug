@@ -49,7 +49,7 @@ module.exports = function (Posts) {
 			postData.handle = data.handle;
 		}
 
-		if (data.priorityLevel != 0) {
+		if (data.priorityLevel !== 0) {
 			postData.priorityLevel = data.priorityLevel;
 		}
 

@@ -202,12 +202,6 @@ module.exports = function (Topics) {
 		if (uid > 0 && settings.followTopicsOnReply) {
 			await Topics.follow(postData.tid, uid);
 		}
-		
-		// if (priorityflag(data.content) == 1) {
-		// 	data.flaggedPriority = 1;
-		// } else if (priorityflag(data.content) == 2) {
-		// 	data.flaggedPriority = 1;
-		// }
 		data.priorityLevel = priorityflag(data.content);
 
 		if (parseInt(uid, 10)) {
