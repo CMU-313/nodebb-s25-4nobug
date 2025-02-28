@@ -56,6 +56,13 @@
 			<div class="d-flex align-items-center gap-1 flex-grow-1 justify-content-end">
 				<span class="bookmarked opacity-0 text-primary"><i class="fa fa-bookmark-o"></i></span>
 				<a href="{config.relative_path}/post/{./pid}" class="post-index text-muted d-none d-md-inline">#{increment(./index, "1")}</a>
+				{{{ if (posts.priorityLevel == "3") }}} 
+				<i class="fas fa-flag" style="color:red;" title="High Priority"></i> 
+				{{{ else if (posts.priorityLevel == "2") }}} 
+				<i class="fas fa-flag" style="color:yellow;" title="Medium Priority"></i> 
+				{{{ else if (posts.priorityLevel == "1") }}} 
+				<i class="fas fa-flag" style="color:green;" title="Low Priority"></i> 
+				{{{ end }}}
 			</div>
 		</div>
 

@@ -374,6 +374,7 @@ Notifications.markAllRead = async function (uid) {
 	await Notifications.markReadMultiple(nids, uid);
 };
 
+
 Notifications.prune = async function () {
 	const cutoffTime = Date.now() - notificationPruneCutoff;
 	const nids = await db.getSortedSetRangeByScore('notifications', 0, 500, '-inf', cutoffTime);
