@@ -75,10 +75,12 @@ It now has a new section called questions.
 It now has a new feature that allows instructors to receive a notification when a student posts in the question section.
 
 In addition, students can assign priority labels to their posts, and faculties can deal with the posts based on priorities. They can also filter the posts that have not been resolved.
-```sh
-npm install
-node app.js
 
+To install the updated feature, run nodebb normal setup with:
+```sh
+./nodebb setup
+./nodebb build
+'''
 ## License
 
 NodeBB is licensed under the **GNU General Public License v3 (GPL-3)** (http://www.gnu.org/copyleft/gpl.html).
