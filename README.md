@@ -64,6 +64,21 @@ It is important to ensure that your NodeBB and database servers are secured. Bea
 
 Detailed upgrade instructions are listed in [Upgrading NodeBB](https://docs.nodebb.org/configuring/upgrade/)
 
+## Updates 2/27/2025
+
+Latest Updates
+
+Bug fixes and UI enhancements for a smoother user experience.
+
+It now has a new section called questions.
+
+It now has a new feature that allows instructors to receive a notification when a student posts in the question section.
+
+In addition, students can assign priority labels to their posts, and faculties can deal with the posts based on priorities. They can also filter the posts that have not been resolved.
+```sh
+npm install
+node app.js
+
 ## License
 
 NodeBB is licensed under the **GNU General Public License v3 (GPL-3)** (http://www.gnu.org/copyleft/gpl.html).
