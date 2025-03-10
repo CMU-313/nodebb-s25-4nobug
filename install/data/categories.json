@@ -34,5 +34,14 @@
         "color": "#ffffff",
         "icon" : "fa-question",
         "order": 3
+    },
+    {
+        "name": "Questions",
+        "description": "Post any question you have!",
+        "descriptionParsed": "<p>Post any question you have!</p>\n",
+        "bgColor": "#e95c5a",
+        "color": "#ffffff",
+        "icon" : "fa-question",
+        "order": 5
     }
 ]

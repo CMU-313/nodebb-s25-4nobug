@@ -24,6 +24,7 @@ const file = require('../src/file');
 const helpers = require('./helpers');
 const utils = require('../src/utils');
 const request = require('../src/request');
+const notifications = require('../src/notifications');
 
 describe('Post\'s', () => {
 	let voterUid;
@@ -1202,6 +1203,128 @@ describe('Post\'s', () => {
 	});
 });
 
+describe('Posts & Notifications', () => {
+    let studentUid;
+    let instructorUid;
+    let receiverUid;
+    const studentGroup = "students"; // Students group
+    const instructorGroup = "instructors"; // Instructors group
+    const notifyGroup = "notify-group"; // The group that should receive notifications
+    const targetCategoryId = 1; // The category ID that triggers notifications
+    const testCategoryId = 1; // New test category
+
+    before(async () => {
+        // Create a student user who will post
+        studentUid = await user.create({
+            username: 'studentUser',
+            email: 'student@test.com',
+        });
+
+        // Create an instructor user
+        instructorUid = await user.create({
+            username: 'instructorUser',
+            email: 'instructor@test.com',
+        });
+
+        // Create a user who should receive notifications
+        receiverUid = await user.create({
+            username: 'receiverUser',
+            email: 'receiver@test.com',
+        });
+
+        // Add student to `students` group
+        await groups.join(studentGroup, studentUid);
+
+        // Add instructor to `instructors` group
+        await groups.join(instructorGroup, instructorUid);
+
+        // Add receiver to `notifyGroup`
+        await groups.join(notifyGroup, receiverUid);
+
+        // Create a test category with `cid = 5`
+        await categories.create({
+            cid: testCategoryId,
+            name: "Test Category",
+            description: "This is a test category.",
+        });
+    });
+
+    it('should create a post successfully in cid = 5', async () => {
+        const { postData } = await topics.post({
+            uid: studentUid,
+            cid: testCategoryId, // Posting in category 5
+            title: 'Test Post in Category 5',
+            content: 'This is a test post in category 5.',
+        });
+
+        assert(postData, "Post was not created in category 5");
+        console.log("✅ Post creation in category 5 test passed.");
+    });
+
+    it('should notify the correct group when a student posts in target category', async () => {
+        // Simulate a post by a student in `targetCategoryId`
+        const { postData } = await topics.post({
+            uid: studentUid,
+            cid: targetCategoryId,
+            title: 'Student Test Notification Post',
+            content: 'This post should trigger a notification.',
+        });
+
+        assert(postData, "Post was not created");
+
+        // Create the notification
+        const notification = await notifications.create({
+            type: 'notificationType_new-topic-in-category',
+            bodyShort: `New post in category ${targetCategoryId}!`,
+            nid: `post:${postData.pid}`,
+            path: `/post/${postData.pid}`,
+            from: studentUid,
+        });
+
+        // Send notification to all in `notifyGroup`
+        await notifications.push(notification, [receiverUid]);
+
+        // Fetch notifications for the receiver
+        const userNotifications = await notifications.getMultiple([`post:${postData.pid}`]);
+        const foundNotification = userNotifications.find(n => n.nid === `post:${postData.pid}`);
+
+        assert(foundNotification, "Receiver did not get the expected notification");
+        console.log("✅ Notification test passed: Receiver received the notification.");
+    });
+
+    it('should notify when an instructor posts in cid = 5', async () => {
+        // Simulate a post by an instructor in `cid = 5`
+        const { postData } = await topics.post({
+            uid: instructorUid,
+            cid: testCategoryId, // Posting in category 5
+            title: 'Instructor Test Post',
+            content: 'This post should also trigger a notification.',
+        });
+
+        assert(postData, "Instructor post was not created in category 5");
+
+        // Create the notification
+        const notification = await notifications.create({
+            type: 'notificationType_new-topic-in-category',
+            bodyShort: `Instructor posted in category ${testCategoryId}!`,
+            nid: `post:${postData.pid}`,
+            path: `/post/${postData.pid}`,
+            from: instructorUid,
+        });
+
+        // Send notification to all in `notifyGroup`
+        await notifications.push(notification, [receiverUid]);
+
+        // Fetch notifications for the receiver
+        const userNotifications = await notifications.getMultiple([`post:${postData.pid}`]);
+        const foundNotification = userNotifications.find(n => n.nid === `post:${postData.pid}`);
+
+        assert(foundNotification, "Receiver did not get the expected notification for instructor post");
+        console.log("✅ Notification test passed: Receiver received notification for instructor post.");
+    });
+
+
+});
 describe('Posts\'', async () => {
 	let files;
 
