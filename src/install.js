@@ -14,6 +14,11 @@ const { paths } = require('./constants');
 const install = module.exports;
 const questions = {};
 
+const iroh = require('iroh');
+
+// Start tracking
+
+
 questions.main = [
 	{
 		name: 'url',
@@ -611,6 +616,7 @@ async function installPlugins() {
 
 install.setup = async function () {
 	try {
+		iroh.start();
 		checkSetupFlagEnv();
 		checkCIFlag();
 		await setupConfig();
@@ -628,6 +634,8 @@ install.setup = async function () {
 		await enableDefaultPlugins();
 		await setCopyrightWidget();
 		await copyFavicon();
+		iroh.stop();
+		console.log(iroh.report());
 		if (nconf.get('plugins:autoinstall')) await installPlugins();
 		await checkUpgrade();
 
@@ -665,3 +673,4 @@ install.save = async function (server_conf) {
 		file: serverConfigPath,
 	});
 };
+
