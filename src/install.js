@@ -7,6 +7,7 @@ const prompt = require('prompt');
 const winston = require('winston');
 const nconf = require('nconf');
 const _ = require('lodash');
+const iroh = require('iroh');
 
 const utils = require('./utils');
 const { paths } = require('./constants');
@@ -14,7 +15,7 @@ const { paths } = require('./constants');
 const install = module.exports;
 const questions = {};
 
-const iroh = require('iroh');
+
 
 // Start tracking
 
