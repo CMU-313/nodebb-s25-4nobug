@@ -7,7 +7,7 @@ const prompt = require('prompt');
 const winston = require('winston');
 const nconf = require('nconf');
 const _ = require('lodash');
-//const iroh = require('iroh');
+// const iroh = require('iroh');
 
 const utils = require('./utils');
 const { paths } = require('./constants');
@@ -617,7 +617,7 @@ async function installPlugins() {
 
 install.setup = async function () {
 	try {
-		//iroh.start();
+		// iroh.start();
 		checkSetupFlagEnv();
 		checkCIFlag();
 		await setupConfig();
@@ -635,8 +635,8 @@ install.setup = async function () {
 		await enableDefaultPlugins();
 		await setCopyrightWidget();
 		await copyFavicon();
-		//iroh.stop();
-		//console.log(iroh.report());
+		// iroh.stop();
+		// console.log(iroh.report());
 		if (nconf.get('plugins:autoinstall')) await installPlugins();
 		await checkUpgrade();
 
