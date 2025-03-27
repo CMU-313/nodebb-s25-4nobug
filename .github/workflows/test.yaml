@@ -77,7 +77,7 @@ jobs:
           EOF
 
       - name: Setup NodeBB
-        run: ./nodebb setup --no-config-prompt
+        run: ./nodebb setup 
 
       #- name: Run ESLint
       #  run: npm run lint
