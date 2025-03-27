@@ -75,6 +75,8 @@ jobs:
               "port": 6379
             }
         run: |
+          echo "Setup: $SETUP"
+          echo "CI: $CI"
           node app --setup="$SETUP" --ci="$CI"
 
       #- name: Run ESLint
