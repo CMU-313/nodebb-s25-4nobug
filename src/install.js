@@ -118,6 +118,7 @@ function checkSetupFlagEnv() {
 
 	if (missingFields.length === 0) {
 		install.values = setupVal;
+		winston.info('All required fields present');
 	} else {
 		winston.error('[install/checkSetupFlagEnv] required values are missing for automated setup:');
 		missingFields.forEach(field => winston.error(`  ${field}`));
