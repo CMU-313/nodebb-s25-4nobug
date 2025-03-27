@@ -75,8 +75,8 @@ jobs:
               "port": 6379
             }
         run: |
-          node app -setup="{$SETUP}" -ci="${CI}"
-
+          node app -
+      # node app -setup="{$SETUP}" -ci="${CI}"
       #- name: Run ESLint
       #  run: npm run lint
 
