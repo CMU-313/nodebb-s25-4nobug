@@ -51,39 +51,31 @@ jobs:
         with:
           useLockFile: false
 
-      
-      - name: Create NodeBB config.json
-        run: |
-          cat > config.json <<EOF
-          {
-            "url": "http://127.0.0.1:4567/forum",
-            "secret": "abcdef",
-            "port": 4567,
-            "use_port": true,
-            "bind_address": "0.0.0.0",
-            "database": "redis",
-            "redis": {
-              "host": "127.0.0.1",
-              "port": 6379,
-              "password": "",
-              "database": 0
-            },
-            "test_database": {
-              "host": "127.0.0.1",
-              "port": "6379",
-              "password": "",
-              "database": "1"
-          },
-            "admin": {
-              "username": "admin",
-              "email": "test@example.org",
-              "password": "hAN3Eg8W"
-            }
-          }
-          EOF
+      - name: Setup for Redis
+        env:
+          SETUP: >-
+            {
+              "url": "http://127.0.0.1:4567/forum",
+              "secret": "abcdef",
+              "admin:username": "admin",
+              "admin:email": "test@example.org",
+              "admin:password": "hAN3Eg8W",
+              "admin:password:confirm": "hAN3Eg8W",
 
-      - name: Setup NodeBB
-        run: ./nodebb setup 
+              "database": "redis",
+              "redis:host": "127.0.0.1",
+              "redis:port": 6379,
+              "redis:password": "",
+              "redis:database": 0
+            }
+          CI: >-
+            {
+              "host": "127.0.0.1",
+              "database": 1,
+              "port": 6379
+            }
+        run: |
+          node app --setup="{$SETUP}" --ci="${CI}"
 
       #- name: Run ESLint
       #  run: npm run lint
