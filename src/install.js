@@ -102,6 +102,7 @@ function checkSetupFlagEnv() {
 	// TODO: better behaviour would be to support overrides per value, i.e. in order of priority (generic pattern):
 	//       flag, env, config file, default
 	const setupData = nconf.get('setup');
+	winston.info('setup config received');
 	if (!setupData) return;
 
 	try {
@@ -109,6 +110,7 @@ function checkSetupFlagEnv() {
 		setupVal = { ...setupVal, ...setupJSON };
 	} catch (err) {
 		winston.error('[install/checkSetupFlagEnv] invalid JSON in nconf.get(\'setup\'), ignoring setup values from JSON');
+		winston.info('[install/checkSetupFlagEnv] invalid JSON in nconf.get(\'setup\'), ignoring setup values from JSON');
 	}
 
 	if (!setupVal || typeof setupVal !== 'object') return;

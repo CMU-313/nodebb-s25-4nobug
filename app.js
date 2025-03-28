@@ -56,7 +56,7 @@ if (!process.send) {
 }
 
 if (nconf.get('setup') || nconf.get('install')) {
-	require('./src/cli/setup').setup(nconf.get('setup'));
+	require('./src/cli/setup').setup();
 } else if (!configExists) {
 	require('./install/web').install(nconf.get('port'));
 } else if (nconf.get('upgrade')) {
