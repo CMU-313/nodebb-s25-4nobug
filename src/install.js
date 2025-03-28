@@ -76,6 +76,7 @@ function checkSetupFlagEnv() {
 	// Set setup values from env vars (if set)
 	const envKeys = Object.keys(process.env);
 	if (!Object.keys(envConfMap).some(key => envKeys.includes(key))) {
+		console.log('ERROR! RETURNED!');
 		return;
 	}
 
