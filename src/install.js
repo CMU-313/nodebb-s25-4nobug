@@ -102,7 +102,7 @@ function checkSetupFlagEnv() {
 	// TODO: better behaviour would be to support overrides per value, i.e. in order of priority (generic pattern):
 	//       flag, env, config file, default
 	const setupData = nconf.get('setup');
-	winston.info('setup config received');
+	console.log('setup config received');
 	if (!setupData) return;
 
 	try {
@@ -120,7 +120,7 @@ function checkSetupFlagEnv() {
 
 	if (missingFields.length === 0) {
 		install.values = setupVal;
-		winston.info('All required fields present');
+		console.log('All required fields present');
 	} else {
 		winston.error('[install/checkSetupFlagEnv] required values are missing for automated setup:');
 		missingFields.forEach(field => winston.error(`  ${field}`));
@@ -188,6 +188,7 @@ async function setupConfig() {
 			}
 		});
 	} else {
+		console.log('Do not have auto setup value');
 		config = await prompt.get(questions.main);
 	}
 	await configureDatabases(config);

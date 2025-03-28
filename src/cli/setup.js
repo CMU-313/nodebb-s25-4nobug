@@ -28,7 +28,7 @@ async function setup(initConfig) {
 	}
 
 	const data = await install.setup();
-	winston.info('install setup complete');
+	
 
 
 	prestart.loadConfig(configFile);
