@@ -76,6 +76,7 @@ function checkSetupFlagEnv() {
 	// Set setup values from env vars (if set)
 	const envKeys = Object.keys(process.env);
 	if (!Object.keys(envConfMap).some(key => envKeys.includes(key))) {
+		console.log('ERROR! RETURNED!');
 		return;
 	}
 
@@ -102,6 +103,7 @@ function checkSetupFlagEnv() {
 	// TODO: better behaviour would be to support overrides per value, i.e. in order of priority (generic pattern):
 	//       flag, env, config file, default
 	const setupData = nconf.get('setup');
+	console.log('setup config received');
 	if (!setupData) return;
 
 	try {
@@ -109,6 +111,7 @@ function checkSetupFlagEnv() {
 		setupVal = { ...setupVal, ...setupJSON };
 	} catch (err) {
 		winston.error('[install/checkSetupFlagEnv] invalid JSON in nconf.get(\'setup\'), ignoring setup values from JSON');
+		winston.info('[install/checkSetupFlagEnv] invalid JSON in nconf.get(\'setup\'), ignoring setup values from JSON');
 	}
 
 	if (!setupVal || typeof setupVal !== 'object') return;
@@ -118,6 +121,7 @@ function checkSetupFlagEnv() {
 
 	if (missingFields.length === 0) {
 		install.values = setupVal;
+		console.log('All required fields present');
 	} else {
 		winston.error('[install/checkSetupFlagEnv] required values are missing for automated setup:');
 		missingFields.forEach(field => winston.error(`  ${field}`));
@@ -185,6 +189,7 @@ async function setupConfig() {
 			}
 		});
 	} else {
+		console.log('Do not have auto setup value');
 		config = await prompt.get(questions.main);
 	}
 	await configureDatabases(config);

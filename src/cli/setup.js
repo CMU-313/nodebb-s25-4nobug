@@ -28,6 +28,8 @@ async function setup(initConfig) {
 	}
 
 	const data = await install.setup();
+	
+
 
 	prestart.loadConfig(configFile);
 
